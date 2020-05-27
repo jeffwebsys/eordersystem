@@ -19,6 +19,9 @@
       </div>
 
       <!-- Sidebar Menu -->
+
+      
+
       <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <!-- Add icons to the links using the .nav-icon class
@@ -33,37 +36,61 @@
       </a>
       <ul class="nav nav-treeview">
       <li class="nav-item">
-      <a href="/index" class="nav-link">
-      <i class="far fa-circle nav-icon"></i>
+      <a href="/index" class="nav-link {{  (request()->segment(1) == 'index') ? 'active' : '' }}">
+      <i class="fa fa-chart-line nav-icon"></i>
       <p>Dashboard</p>
+          
+      </a>
+      </li>
+      <li class="nav-item">
+      <a href="/profile" class="nav-link {{  (request()->segment(1) == 'profile') ? 'active' : '' }}">
+      <i class="fa fa-user nav-icon"></i>
+      <p>My Profile</p>
+          
+      </a>
+      </li>
+       <li class="nav-item">
+      <a href="/trashed" class="nav-link {{  (request()->segment(1) == 'trashed') ? 'active' : '' }}">
+      <i class="fa fa-trash nav-icon"></i>
+      <p>Recycle Bin</p>
+          
+      </a>
+      </li>
+      <li class="nav-item">
+      <a href="{{ url('/logout') }}" class="nav-link">
+      <i class="fa fa-power-off nav-icon"></i>
+      <p>Sign-off</p>
+          
       </a>
       </li>
       </ul>
       </li>
-      <li class="nav-item has-treeview">
+      <li class="nav-item has-treeview {{ (request()->segment(1) == 'product') ? 'menu-open' : '' }}">
       <a href="#" class="nav-link">
       <i class="nav-icon fas fa-play"></i>
       <p>
       Products
+      
       <i class="fas fa-angle-left right"></i>
       <span class="badge badge-info right">2</span>
       </p>
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-      <a href="/product" class="nav-link">
-      <i class="far fa-circle nav-icon"></i>
+     {{--  <li class="{{ (request()->is('admin/cities')) ? 'active' : '' }}">   --}}
+      <a href="/product" class="nav-link {{ (request()->segment(1) == 'product') ? 'active' : '' }}">
+      <i class="fa fa-shopping-cart nav-icon"></i>
       <p>View Product</p>
       </a>
       </li>
       <li class="nav-item">
       <a href="/product/create" class="nav-link">
-      <i class="far fa-circle nav-icon"></i>
+      <i class="fa fa-cart-plus nav-icon"></i>
       <p>Add Product</p>
       </a>
       </li>
       <li class="nav-item">
-      <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+      <a href="/product" class="nav-link">
       <i class="far fa-circle nav-icon"></i>
       <p>Collapsed Sidebar</p>
       </a>
@@ -71,9 +98,9 @@
       </ul>
       </li>
 
-      <li class="nav-item has-treeview">
+      <li class="nav-item has-treeview {{ (request()->segment(1) == 'category') ? 'menu-open' : '' }}">
       <a href="#" class="nav-link">
-      <i class="nav-icon fas fa-play"></i>
+      <i class="nav-icon fa fa-cubes"></i>
       <p>
       Categories
       <i class="fas fa-angle-left right"></i>
@@ -82,8 +109,8 @@
       </a>
       <ul class="nav nav-treeview">
       <li class="nav-item">
-      <a href="/category" class="nav-link">
-      <i class="far fa-circle nav-icon"></i>
+      <a href="/category" class="nav-link {{ (request()->segment(1) == 'category') ? 'active' : '' }}">
+      <i class="fa fa-file-image nav-icon"></i>
       <p>View Category</p>
       </a>
       </li>

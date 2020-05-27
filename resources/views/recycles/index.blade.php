@@ -28,7 +28,7 @@
 <th>Quantity</th>
 <th>Status</th>
 <th>Subcategory</th>
-<th>Action</th>
+<th>Restore</th>
 </tr>
 </thead>
 <tbody>
@@ -49,11 +49,9 @@
 <td> <span class="badge badge-success">Available</span> </td>
 @endif
 <td>{{ $product->subcategory->name }}</td>
-<td class="d-flex justify-content-center"><a href="/product/edit/{{ $product->id }}" class="btn btn-dark"><i class="fa fa-edit"></i></a>  |  <form action="/product/{{ $product->id }}" method="post">
+<td class="d-flex justify-content-center">{{-- <a href="/trashed/restore/{{ $product->id }}" class="btn-xs btn-info">Restore</a>  --}}  <form action="/trashed/{{ $product->id }}" method="post">
 @csrf
-@method('delete')
-
-<button type="submit" class="btn btn-danger" id="add"><i class="fa fa-trash"></i></button></td></form>
+<button type="submit" class="btn-xs btn-info" id="add">Restore</button></td></form>
 
 </tr>
 @endforeach

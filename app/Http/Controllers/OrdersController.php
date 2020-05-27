@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Psr7\Response;
+use App\Product;
 
 
 class OrdersController extends Controller
@@ -12,15 +12,9 @@ class OrdersController extends Controller
 //
 public function index(){
 
+$product = Product::all();
 
-// $data2 = 'John 1:1';
-// $data = Http::get('https://bible-api.com/'.$data2)->json();
-
-// return view('orders.index',['data' => $data]);
-
-$data = Http::get('https://bible-api.com/')->json();
-
-return view('orders.index',['data' => $data]);
+return view('orders.index',compact('product'));
 }
 
 public function store(){

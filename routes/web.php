@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/', function () { return view('welcome'); });
 
 Route::get('/index', 'DashboardController@index');
@@ -45,6 +46,12 @@ Route::get('/category/subcategory/{category}/', 'CategorySub@show')->name('categ
 
 #Profile
 Route::get('/profile/', 'ProfilesController@index')->name('profile.index');
+
+##Recycles
+Route::get('/trashed/', 'RecyclesController@index');
+Route::post('/trashed/{id}', 'RecyclesController@restore');
+
+
 
 
 #orddrs

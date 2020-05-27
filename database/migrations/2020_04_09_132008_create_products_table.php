@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('status');
             $table->unsignedBigInteger('quantity')->default(1);
+            $table->binary('image');
             $table->string('name');
             $table->string('description');
 

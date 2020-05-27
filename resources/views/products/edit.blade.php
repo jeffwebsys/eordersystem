@@ -15,7 +15,7 @@
             </div>
             </div>
             <div class="card-body">
-            <form action="/product/{{ $product->id }}" method="post">
+            <form action="/product/{{ $product->id }}" method="post" enctype="multipart/form-data">
             @method('patch')
             @csrf
             <div class="form-group">
@@ -32,6 +32,15 @@
             <small class="text-danger">{{ $message }}</small>
             @enderror
             </div>
+            <div class="form-group">
+             <label for="image">Product Image</label>
+            <input type="file" class="form-control-file" id="image" name="image">
+            <label for="image">Current Image</label>
+            <img src="{{ asset('storage') }}/{{ $product->image }}" class="img-thumbnail" style="max-height: 50px">
+            @error('image')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+             </div>
             <div class="form-group">
             <label for="status">Status</label>
             <select class="form-control custom-select" id="status" name="status">

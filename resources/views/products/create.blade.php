@@ -16,7 +16,7 @@
     </div>
     </div>
     <div class="card-body">
-    <form action="/product/" method="post">
+    <form action="/product/" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
     <label for="name">Product Name</label>
@@ -32,6 +32,18 @@
     <label for="description">Product Description</label>
     <input type="text" id="description" name="description" class="form-control" rows="4" value="{{ old('description') }}">
      @error('description')
+      <small class="text-danger">{{ $message }}</small>
+      @enderror
+    </div>
+    
+    
+
+
+    <div class="form-group">
+    <label for="image">Product Image</label>
+    <input type="file" class="form-control-file" id="image" name="image">
+
+     @error('image')
       <small class="text-danger">{{ $message }}</small>
       @enderror
     </div>

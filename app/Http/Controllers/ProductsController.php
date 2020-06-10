@@ -110,11 +110,11 @@ use Intervention\Image\Facades\Image;
 		return request()->validate([
 		'subcategory_id' => 'required',
 		'name' => 'required',
-		'price' => 'required',
+		'price' => 'integer|min:0',
 		'status' => 'required',
 		'description' => 'required',
 		'image' => 'required',
-		'quantity' => 'required|max:9',
+		'quantity' => 'integer|min:0',
 
 		]);
 

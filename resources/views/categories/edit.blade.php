@@ -4,7 +4,7 @@
             @section('content')
             <section class="content">
             <div class="row d-flex">
-            <div class="col-md-6">
+            <div class="col-md-12">
             <div class="card card-primary">
             <div class="card-header">
             <h3 class="card-title">General</h3>

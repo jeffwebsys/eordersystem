@@ -4,7 +4,7 @@
     @section('content')
     <section class="content">
     <div class="row d-flex">
-    <div class="col-md-6">
+    <div class="col-md-12">
     <div class="card card-primary">
     <div class="card-header">
     <h3 class="card-title">General</h3>
@@ -19,10 +19,12 @@
     @csrf
     <div class="form-group">
     <label for="name">Category Name</label>
-    <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
-     @error('name')
+    <textarea id="name" name="name" class="form-control" value="{{ old('name') }}">
+    </textarea>
+      @error('name')
       <small class="text-danger">{{ $message }}</small>
       @enderror
+   
     </div>
     <div class="form-group">
     <label for="description">Category Description</label>

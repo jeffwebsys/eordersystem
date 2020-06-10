@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Profile;
+use Intervention\Image\Facades\Image;
+
 
 class ProfilesController extends Controller
 {
+
+    public function __construct(){
+
+	$this->middleware('auth');
+	}
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class ProfilesController extends Controller
     public function index()
     {
         //
-        return view('profiles.index');
+        $profile = Profile::find(1);
+        return view('profiles.index',compact('profile'));
 
     }
 
@@ -23,9 +32,11 @@ class ProfilesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Profile $profile)
     {
         //
+        return view('profiles.create',compact('profile'));
+
     }
 
     /**
@@ -34,9 +45,29 @@ class ProfilesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
+        $data = $this->validatedForm();
+
+		$imagePath = request('image')->store('uploads','public');
+
+    	$image = Image::make(public_path("storage/{$imagePath}"))->fit(500,500);
+    	$image->save();
+    	auth()->user()->profile()->create([
+
+    	
+		'fullname' => $data['fullname'],
+		'position' => $data['position'],
+		'education' => $data['education'],
+		'location' => $data['location'],
+        'skills' => $data['skills'],
+        'notes' => $data['notes'],
+    	'image' => $imagePath,
+
+        ]);
+        
+        return redirect('/profile');
     }
 
     /**
@@ -82,5 +113,19 @@ class ProfilesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function validatedForm(){
+
+        return request()->validate([
+        'fullname' => 'required',
+		'position' => 'required',
+		'education' => 'required',
+		'location' => 'required',
+        'skills' => 'required',
+        'notes' => 'required',
+        'image' => 'required',
+            ]);
+    
     }
 }

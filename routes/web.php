@@ -45,7 +45,11 @@ Route::delete('/subcategory/{subcategory}', 'SubcategoriesController@destroy');
 Route::get('/category/subcategory/{category}/', 'CategorySub@show')->name('categorysub.show');
 
 #Profile
-Route::get('/profile/', 'ProfilesController@index')->name('profile.index');
+Route::get('/profile/', 'ProfilesController@index');
+Route::get('/profile/create', 'ProfilesController@create');
+Route::post('/profile/', 'ProfilesController@store');
+
+
 
 ##Recycles
 Route::get('/trashed/', 'RecyclesController@index');

@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->binary('image');
             $table->string('name');
             $table->string('description');
+             });
 
 // $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
 //         });
@@ -36,16 +37,51 @@ class CreateProductsTable extends Migration
           
             
         // });
-         
-
- });
-        
 
         Schema::table('subcategories', function($table) {
         $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
     });
+        //table subcategories
+        Schema::create('subcategories', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('user_id');
+            $table->string('name');
+            $table->string('description');
+            $table->unsignedInteger('status');
+            $table->timestamps();
+
+            // $table->foreign('category_id')
+            // ->references('id')
+            // ->on('categories')
+            // ->onDelete('cascade');
+        });
+
+         Schema::table('categories', function($table) {
+        $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+    });
+
+        //table categories
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('status');
+            $table->string('name');
+            $table->string('description');
+
+            // $table->foreign('user_id')
+            // ->references('id')
+            // ->on('users')
+            // ->onDelete('cascade');
+        });
+        Schema::table('users', function($table) {
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    });
 
  }
+
+
    
     /**
      * Reverse the migrations.

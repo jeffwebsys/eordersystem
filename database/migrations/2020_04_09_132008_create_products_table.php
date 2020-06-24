@@ -38,12 +38,15 @@ class CreateProductsTable extends Migration
         // });
          
 
+ });
+        
 
-
-    }
         Schema::table('subcategories', function($table) {
         $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+    });
 
+ }
+   
     /**
      * Reverse the migrations.
      *

@@ -26,8 +26,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('description');
 
-$table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
-        });
+// $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+//         });
 
         //     Schema::create('product_subcategory', function (Blueprint $table) {
         //     $table->integer('subcategory_id');
@@ -36,20 +36,8 @@ $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDele
           
             
         // });
-        Schema::create('subcategories', function (Blueprint $table) {
-            $table->unsignedInteger('id');
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('user_id');
-            $table->string('name');
-            $table->string('description');
-            $table->unsignedInteger('status');
-            $table->timestamps();
-
-            $table->foreign('category_id')
-            ->references('id')
-            ->on('categories')
-            ->onDelete('cascade');
-        });
+         Schema::table('subcategories', function($table) {
+       $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
 
 
 

@@ -37,7 +37,7 @@ $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDele
             
         // });
         Schema::create('subcategories', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedInteger('id');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('user_id');
             $table->string('name');

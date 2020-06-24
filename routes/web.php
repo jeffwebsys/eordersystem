@@ -45,9 +45,11 @@ Route::delete('/subcategory/{subcategory}', 'SubcategoriesController@destroy');
 Route::get('/category/subcategory/{category}/', 'CategorySub@show')->name('categorysub.show');
 
 #Profile
-Route::get('/profile/', 'ProfilesController@index');
-Route::get('/profile/create', 'ProfilesController@create');
-Route::post('/profile/', 'ProfilesController@store');
+
+
+Route::livewire('/profile/create', 'validate');
+Route::livewire('/profile/', 'index');
+
 
 
 

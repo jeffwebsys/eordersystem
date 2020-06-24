@@ -33,5 +33,7 @@
 <!-- ./wrapper -->
 
 @include('layouts.partials.lower-links')
+{{-- livewire --}}
+<livewire:scripts>
 </body>
 </html>

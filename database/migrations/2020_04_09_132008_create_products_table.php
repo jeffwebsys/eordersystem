@@ -36,6 +36,20 @@ $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDele
           
             
         // });
+        Schema::create('subcategories', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('user_id');
+            $table->string('name');
+            $table->string('description');
+            $table->unsignedInteger('status');
+            $table->timestamps();
+
+            $table->foreign('category_id')
+            ->references('id')
+            ->on('categories')
+            ->onDelete('cascade');
+        });
 
 
 
@@ -53,31 +67,5 @@ $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDele
     }
 
 
-     public function up()
-    {
-        Schema::create('subcategories', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('user_id');
-            $table->string('name');
-            $table->string('description');
-            $table->unsignedInteger('status');
-            $table->timestamps();
 
-            $table->foreign('category_id')
-            ->references('id')
-            ->on('categories')
-            ->onDelete('cascade');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('subcategories');
-    }
 }
